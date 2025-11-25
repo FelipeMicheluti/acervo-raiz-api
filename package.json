@@ -1,0 +1,29 @@
+{
+  "name": "acervo-raiz-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/FelipeMicheluti/acervo-raiz-api.git",
+  "author": "Felipe Micheluti <michelutifelipe@gmail.com>",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "sequelize": "^6.37.7",
+    "sqlite3": "^5.1.7",
+    "uuid": "^13.0.0",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.3"
+  }
+}
