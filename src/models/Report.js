@@ -1,7 +1,9 @@
 import { DataTypes } from "sequelize";
-import { database } from "../config/database.js";
+import { database } from "../config/database.js"
 
-export const Report = database.define('Report', {
+
+
+export const Report = database.define('report', {
     id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,

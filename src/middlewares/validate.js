@@ -1,13 +1,13 @@
 export const validate = (schemas = {}) => (resquest, _response, next) => {
     try{
        if (schemas.body) {
-      request.body = schemas.body.parse(request.body);
+      resquest.body = schemas.body.parse(resquest.body);
     }
 
     if (schemas.query) {
-      const validated = schemas.query.parse(request.query);
+      const validated = schemas.query.parse(resquest.query);
     
-      Object.defineProperty(request, 'query', {
+      Object.defineProperty(resquest, 'query', {
         value: validated,
         writable: true,
         configurable: true,
@@ -15,9 +15,9 @@ export const validate = (schemas = {}) => (resquest, _response, next) => {
       });
     }
     if (schemas.params) {
-      const validated = schemas.params.parse(request.params);
+      const validated = schemas.params.parse(resquest.params);
     
-      Object.defineProperty(request, 'params', {
+      Object.defineProperty(resquest, 'params', {
         value: validated,
         writable: true,
         configurable: true,

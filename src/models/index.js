@@ -3,16 +3,16 @@ import { env } from '../config/env.js';
 import { Report } from './Report.js';
 import { User } from './User.js';
 
-const models = { User, Report };
+export const models = { User, Report };
 
-User.hasMany(Report,{
-    foreignKey:'createdBy',
-    as:'reports'
+User.hasMany(Report, {
+  foreignKey: 'createdBy',
+  as: 'reports'
 })
 
 Report.belongsTo(User, {
-    foreignKey: 'createdBy',
-    as: 'reports'
+  foreignKey: 'createdBy',
+  as: 'user'
 })
 
 if (env.nodeEnv === 'development') {

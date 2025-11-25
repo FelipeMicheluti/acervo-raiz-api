@@ -3,7 +3,7 @@ import { User } from '../../models/index.js';
 export const makeUserRepoSequelize = () => {
     return {
         async create({ name, email, passwordHash }) {
-            const user = await User.create({ name, email, passowrdHash });
+            const user = await User.create({ name, email, passwordHash });
 
             return user.toJSON();
         },

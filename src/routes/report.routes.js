@@ -8,7 +8,6 @@ export const reportRouter = () => {
     const r = Router()
     const ctrl = makeReportController()
 
-    r.use(ensureAuth)
 
     r.post('/',ensureAuth, validate({ body: createReportSchema }), ctrl.create)
     r.get('/', validate({ query: listReportsQuery }), ctrl.list)

@@ -1,7 +1,7 @@
 import { createApp } from './app.js';
-import { database } from './config/database.js';
 import { env } from './config/env.js';
 import './models/index.js'
+import { database } from './models/index.js';
 
 const connectDatabase = async () => {
     try {

@@ -1,12 +1,11 @@
 import { Sequelize } from 'sequelize';
-import dotenv from 'dotenv';
+import { env } from './env.js';
 
-dotenv.config();
 
 export const database = new Sequelize({
     dialect: 'sqlite',
     storage: './database.sqlite',
-    logging: process.env.NODE_NEW === 'development' ? console.log : false,
+    logging: env.nodeEnv === 'development' ? console.log : false,
     define: {
         timestamps: true,
         underscored: true,
