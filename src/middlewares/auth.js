@@ -1,0 +1,28 @@
+
+
+
+export const ensureAuth = (request, _response, next) => {
+    const header = request.headers.authorization;
+
+    if (!header) {
+        return next({ message: 'Missing Authorization header', status: 401,
+            code:'UNAUTHORIZED'});
+    }
+
+    const [type, token] = header.split('');
+
+    if (type !== 'bearer' || !token){
+        return next({ message: 'Invalid Authorization format', status: 400,
+            code:
+        'BAD_REQUEST'});
+    }
+
+    try{
+        const payload = jwt.verify(token, env.jwtSecret);
+        request.user ={ id: payload.sub};
+        
+        return next();
+    } catch{
+        return next({ message: 'Invalid or expired token', status: 401, code: 'UNAUTHORIZED'});
+    }
+};
