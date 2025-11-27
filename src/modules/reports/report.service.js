@@ -6,8 +6,8 @@ export const makeReportService = () => {
   const SORTABLE = ['id', 'title', 'createdAt']
   const DIR_OK = ['ASC', 'DESC']
 
-  const create = async ({ title, content, originLocation, createdBy }) => {
-    return await repo.create({ title, content, originLocation, createdBy })
+  const create = async ({ title, content, originLocation, categoryId, createdBy }) => {
+    return await repo.create({ title, content, originLocation, categoryId, createdBy })
   }
 
   const get = async ({ id }) => {

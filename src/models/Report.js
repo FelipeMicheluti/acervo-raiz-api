@@ -34,6 +34,17 @@ export const Report = database.define('report', {
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
+    },
+    categoryId: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        field: 'category_id',
+        references: {
+            model: 'categories',
+            key: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
     }
 }, {
     tableName: 'reports',

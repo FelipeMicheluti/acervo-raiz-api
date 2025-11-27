@@ -5,9 +5,11 @@ export const makeReportController = () => {
 
   const create = async (request, response, next) => {
     try {
-      const { title, content, originLocation } = request.body;
+      const { title, content, originLocation, categoryId } = request.body;
 
-      const product = await service.create({ title, content, originLocation, createdBy: request.user.id });
+      console.log({body:request.body})
+
+      const product = await service.create({ title, content, originLocation, categoryId, createdBy: request.user.id });
 
       return response.status(201).json(product);
     } catch (error) {
@@ -26,7 +28,7 @@ export const makeReportController = () => {
 
   const get = async (request, response, next) => {
     try {
-      return response.json(await service.get({id: request.params.id}));
+      return response.json(await service.get({ id: request.params.id }));
     }
     catch (err) {
       return next(err);
@@ -35,7 +37,7 @@ export const makeReportController = () => {
 
   const patch = async (request, response, next) => {
     try {
-      return response.json(await service.update({id: request.params.id, data: request.body}));
+      return response.json(await service.update({ id: request.params.id, data: request.body }));
     }
     catch (err) {
       return next(err);
@@ -44,7 +46,7 @@ export const makeReportController = () => {
 
   const remove = async (request, response, next) => {
     try {
-      await service.remove({id:request.params.id});
+      await service.remove({ id: request.params.id });
       return response.status(204).send();
     }
     catch (err) {

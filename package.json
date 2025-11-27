@@ -7,7 +7,11 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "import:users": "sequelize db:seed --seed 20251123194708-demo-users.cjs",
+    "import:categories": "sequelize db:seed --seed 20251127212047-categories.cjs",
+    "import:reports": "sequelize db:seed --seed 20251123200553-demo-reports.cjs",
+    "import:all": "yarn run import:users && yarn run import:categories && yarn run import:reports"
   },
   "license": "MIT",
   "dependencies": {

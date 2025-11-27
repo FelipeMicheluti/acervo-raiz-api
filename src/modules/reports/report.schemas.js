@@ -4,6 +4,7 @@ export const createReportSchema = z.object({
   title: z.string().min(1, 'title is required'),
   content: z.string().min(1, 'content is required'),
   originLocation: z.string().min(1, 'originLocation is required'),
+  categoryId: z.string().uuid('categoryId is required'),
 })
 
 export const listReportsQuery = z.object({
@@ -22,6 +23,7 @@ export const patchReportSchema = z.object({
   title: z.string().min(1, 'title is required'),
   content: z.string().min(1, 'content is required'),
   originLocation: z.string().min(1, 'originLocation is required'),
+  categoryId: z.string().uuid('categoryId is required'),
 }).refine(obj => Object.keys(obj).length > 0, {
   message: 'no fields to update'
 });

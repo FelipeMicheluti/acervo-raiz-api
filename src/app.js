@@ -6,6 +6,7 @@ import { env } from './config/env.js';
 import { errorHandler } from './middlewares/errorHandler.js'
 import { authRouter } from './routes/auth.routes.js';
 import { reportRouter} from './routes/report.routes.js';
+import { categoryRouter } from './routes/category.routes.js';
 
 
 
@@ -24,6 +25,7 @@ export const createApp = () => {
     
     app.use('/auth', authRouter());
     app.use('/reports', reportRouter());
+    app.use('/category', categoryRouter());
 
     app.use(errorHandler);
 

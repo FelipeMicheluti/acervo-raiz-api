@@ -2,6 +2,8 @@
 const bcrypt = require('bcryptjs');
 const { v4: uuidv4 } = require('uuid');
 
+const ADMIN_EMAIL = 'admin@relatos.com';
+const REGULAR_EMAIL = 'regular@relatos.com';
 
 module.exports = {
     up: async (queryInterface, Sequelize) => {
@@ -10,16 +12,16 @@ module.exports = {
         await queryInterface.bulkInsert('users', [
             {
                 id: uuidv4(),
-                name: 'Admin',
-                email: 'admin@email.com',
+                name: 'admin user',
+                email: ADMIN_EMAIL,
                 password_hash: passwordHash,
                 created_at: new Date(),
                 updated_at: new Date()
             },
             {
                 id: uuidv4(),
-                name: 'User Teste',
-                email: 'user@email.com',
+                name: 'regulr user',
+                email: REGULAR_EMAIL,
                 password_hash: passwordHash,
                 created_at: new Date(),
                 updated_at: new Date()

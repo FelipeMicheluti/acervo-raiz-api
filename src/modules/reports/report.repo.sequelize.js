@@ -4,8 +4,8 @@ import { User } from "../../models/User.js"
 
 export const makeReportRepoSequelize = () => {
   return {
-    async create({ title, content, originLocation, createdBy }) {
-      const report = await Report.create({ title, content, originLocation, createdBy })
+    async create({ title, content, originLocation, categoryId, createdBy }) {
+      const report = await Report.create({ title, content, originLocation, categoryId, createdBy })
 
       return report.toJSON()
     },
