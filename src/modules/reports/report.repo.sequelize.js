@@ -1,6 +1,7 @@
 import { Op } from "sequelize"
 import { Report } from "../../models/Report.js"
 import { User } from "../../models/User.js"
+import { Category } from "../../models/Category.js"
 
 export const makeReportRepoSequelize = () => {
   return {
@@ -11,7 +12,20 @@ export const makeReportRepoSequelize = () => {
     },
 
     async findById({ id }) {
-      const report = await Report.findByPk(id)
+      const report = await Report.findByPk(id, {
+        include: [
+          {
+            model: User,
+            as: 'user',
+            attributes: ['id', 'name']
+          },
+          {
+            model: Category,
+            as: 'category',
+            attributes: ['id', 'name']
+          }
+        ]
+      })
 
       return report ? report.toJSON() : null
     },
@@ -19,10 +33,10 @@ export const makeReportRepoSequelize = () => {
     async findAll({ q, page = 1, limit = 10, order = 'id', dir = 'ASC' }) {
       const where = {}
 
-      
+
       if (q) {
-        where.title = { [Op.like]: `%${q}%` }; 
-    
+        where.title = { [Op.like]: `%${q}%` };
+
       }
 
       const offset = (page - 1) * limit;
@@ -32,6 +46,11 @@ export const makeReportRepoSequelize = () => {
         include: [{
           model: User,
           as: 'user',
+          attributes: ['id', 'name']
+        },
+        {
+          model: Category,
+          as: 'category',
           attributes: ['id', 'name']
         }],
         limit,
@@ -47,7 +66,7 @@ export const makeReportRepoSequelize = () => {
         totalPages: Math.ceil(count / limit)
       };
     },
-  async update({ id, data }) {
+    async update({ id, data }) {
       const report = await Report.findByPk(id)
       if (!report) return null
 

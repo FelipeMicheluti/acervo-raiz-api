@@ -7,8 +7,6 @@ export const makeReportController = () => {
     try {
       const { title, content, originLocation, categoryId } = request.body;
 
-      console.log({body:request.body})
-
       const product = await service.create({ title, content, originLocation, categoryId, createdBy: request.user.id });
 
       return response.status(201).json(product);
